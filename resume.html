@@ -2,212 +2,715 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Lucas Serafim Magalhães - Salesforce Developer</title>
+        <!--
+            Salesforce Lightning Design System 2.264.3 (BSD-3-Clause).
+            Icons are unmodified SLDS icons (CC BY-ND 4.0), © Salesforce.
+        -->
+        <link
+            rel="stylesheet"
+            href="node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css"
+        />
         <style>
-            @page {
-                size: A4;
-                margin: 14mm 15mm;
-            }
-            * {
-                box-sizing: border-box;
+            :root {
+                color-scheme: light;
             }
             body {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 10pt;
-                line-height: 1.32;
-                color: #111;
+                margin: 0;
+                font-family: var(--slds-g-font-family-base);
+                font-size: 0.8125rem;
+                line-height: 1.4;
+                color: var(--slds-g-color-neutral-base-10);
+                background: var(--slds-g-color-neutral-base-95);
+            }
+            .resume-app {
+                min-height: 100vh;
+                padding: 1.5rem 1rem 2.5rem;
+                background:
+                    linear-gradient(
+                        var(--slds-g-color-brand-base-30),
+                        var(--slds-g-color-brand-base-30)
+                    )
+                    top / 100% 7.25rem no-repeat,
+                    var(--slds-g-color-neutral-base-95);
+            }
+            .resume {
+                width: min(210mm, 100%);
+                margin: 0 auto;
+            }
+            .resume-header.slds-page-header {
+                padding: 0.9rem 1rem 0.8rem;
+                border: 0;
+                border-radius: 0.25rem 0.25rem 0 0;
+                box-shadow: none;
+                color: var(--slds-g-color-neutral-base-100);
+                background: linear-gradient(
+                    105deg,
+                    var(--slds-g-color-brand-base-20) 0%,
+                    var(--slds-g-color-brand-base-30) 52%,
+                    var(--slds-g-color-brand-base-50) 100%
+                );
+            }
+            .resume-identity {
+                min-width: 0;
+            }
+            .resume-header .slds-page-header__title {
+                color: var(--slds-g-color-neutral-base-100);
+                font-size: 1.375rem;
+                line-height: 1.2;
+            }
+            .resume-role {
+                margin: 0.15rem 0 0;
+                color: var(--slds-g-color-brand-base-80);
+                font-size: 0.875rem;
+                font-weight: 700;
+                white-space: normal;
+            }
+            .resume-cloud {
+                width: 2.5rem;
+                height: 2.5rem;
+                flex: none;
+                --slds-c-icon-color-foreground: var(--slds-g-color-neutral-base-100);
+            }
+            .resume-contact {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem 0.95rem;
+                margin: 0.7rem 0 0;
+                padding: 0;
+                list-style: none;
+            }
+            .resume-contact li {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+                max-width: 100%;
+                color: var(--slds-g-color-neutral-base-100);
+                font-size: 0.75rem;
+            }
+            .resume-contact a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .resume-contact a:hover,
+            .resume-contact a:focus-visible {
+                text-decoration: underline;
+            }
+            .resume-contact .slds-icon {
+                --slds-c-icon-color-foreground: var(--slds-g-color-brand-base-80);
+            }
+            .resume-body {
+                padding: 0.85rem 1rem 1rem;
+            }
+            .resume-section + .resume-section {
+                margin-top: 0.75rem;
+            }
+            .resume-section__head {
+                margin-bottom: 0.4rem;
+                padding-bottom: 0.2rem;
+                border-bottom: 2px solid var(--slds-g-color-brand-base-50);
+            }
+            .resume-section__head h2 {
+                margin: 0;
+                color: var(--slds-g-color-brand-base-30);
+                font-size: 0.75rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+            }
+            .resume-section p {
                 margin: 0;
             }
-            h1 {
-                font-size: 20pt;
-                margin: 0 0 1px 0;
-                letter-spacing: 0.2px;
+            .resume-kpis {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                margin-top: 0.55rem;
+                border: 1px solid var(--slds-g-color-brand-base-90, #dce1eb);
+                border-radius: 0.25rem;
+                background: var(--slds-g-color-brand-base-95, #eef4ff);
+                overflow: hidden;
             }
-            .role {
-                font-size: 11.5pt;
-                font-weight: bold;
-                color: #1a4f8b;
-                margin: 0 0 3px 0;
+            .resume-kpis div {
+                padding: 0.4rem 0.65rem 0.45rem;
             }
-            .contact {
-                font-size: 9.5pt;
-                margin: 0 0 8px 0;
+            .resume-kpis div + div {
+                border-left: 1px solid var(--slds-g-color-brand-base-90);
             }
-            .contact span + span::before {
-                content: " | ";
-                color: #888;
+            .resume-kpis strong {
+                display: block;
+                color: var(--slds-g-color-brand-base-30);
+                font-size: 1.05rem;
+                line-height: 1.2;
             }
-            h2 {
-                font-size: 10.5pt;
+            .resume-kpis span {
+                display: block;
+                margin-top: 0.05rem;
+                color: var(--slds-g-color-neutral-base-30);
+                font-size: 0.6875rem;
+                letter-spacing: 0.02em;
                 text-transform: uppercase;
-                letter-spacing: 0.8px;
-                border-bottom: 1px solid #1a4f8b;
-                color: #1a4f8b;
-                padding-bottom: 1px;
-                margin: 10px 0 5px 0;
             }
-            p {
-                margin: 0 0 3px 0;
+            .resume-job {
+                margin-top: 0.5rem;
+                padding-left: 0.65rem;
+                
             }
-            .job {
-                margin-bottom: 7px;
+            .resume-job:first-of-type {
+                margin-top: 0.15rem;
             }
-            .job-head {
+            .resume-job__head,
+            .resume-cert {
                 display: flex;
                 justify-content: space-between;
-                font-weight: bold;
+                gap: 0.75rem;
+                align-items: baseline;
             }
-            .job-sub {
+            .resume-job h3,
+            .resume-cert strong {
+                margin: 0;
+                color: var(--slds-g-color-brand-base-20);
+                font-size: 0.8125rem;
+                font-weight: 700;
+            }
+            .resume-when {
+                flex: none;
+                color: var(--slds-g-color-neutral-base-40);
+                font-size: 0.75rem;
+                white-space: nowrap;
+            }
+            .resume-company {
                 display: flex;
-                justify-content: space-between;
+                align-items: center;
+                gap: 0.3rem;
+                margin-top: 0.05rem;
+                color: var(--slds-g-color-neutral-base-30);
                 font-style: italic;
-                color: #333;
-                margin-bottom: 2px;
             }
-            ul {
-                margin: 2px 0 0 0;
-                padding-left: 16px;
+            .resume-job li + li {
+                margin-top: 0.1rem;
             }
-            li {
-                margin-bottom: 2px;
+            .resume-skill + .resume-skill {
+                margin-top: 0.35rem;
             }
-            .skills p {
-                margin-bottom: 2px;
+            .resume-skill h3 {
+                margin: 0 0 0.25rem;
+                color: var(--slds-g-color-neutral-base-30);
+                font-size: 0.6875rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
             }
-            .skills b {
-                font-weight: bold;
+            .resume-pills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+            .resume-pills .slds-badge {
+                margin: 0;
+                font-weight: 400;
+            }
+            .resume-cert + .resume-cert {
+                margin-top: 0.28rem;
+            }
+            .resume-cert span {
+                color: var(--slds-g-color-neutral-base-30);
+                font-size: 0.75rem;
+            }
+            .resume-split {
+                display: grid;
+                grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+                gap: 0.75rem 1.25rem;
+                align-items: start;
+            }
+            .resume-languages {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+            @media screen and (max-width: 720px) {
+                .resume-app {
+                    padding: 0.75rem 0.5rem 1.5rem;
+                }
+                .resume-kpis,
+                .resume-split {
+                    grid-template-columns: 1fr;
+                }
+                .resume-kpis div + div {
+                    border-left: 0;
+                    border-top: 1px solid var(--slds-g-color-brand-base-90);
+                }
+                .resume-job__head,
+                .resume-cert {
+                    flex-direction: column;
+                    gap: 0;
+                }
+            }
+            @page {
+                size: A4;
+                margin: 10mm 12mm;
+            }
+            @media print {
+                body,
+                .resume-app {
+                    background: #fff !important;
+                    padding: 0 !important;
+                    min-height: 0 !important;
+                    font-size: 9pt;
+                    line-height: 1.28;
+                }
+                a[href]:after,
+                abbr[title]:after {
+                    content: none !important;
+                }
+                a,
+                a:visited {
+                    text-decoration: none !important;
+                }
+                .resume.slds-card {
+                    width: auto;
+                    border: 0;
+                    border-radius: 0;
+                    box-shadow: none;
+                }
+                .resume-header.slds-page-header {
+                    padding: 0 0 0.28rem;
+                    background: #fff !important;
+                    border-bottom: 2px solid var(--slds-g-color-brand-base-50);
+                    border-radius: 0;
+                }
+                .resume-header .slds-page-header__title {
+                    font-size: 14.5pt !important;
+                    color: var(--slds-g-color-brand-base-20) !important;
+                }
+                .resume-role {
+                    margin-top: 0.05rem;
+                    font-size: 10pt !important;
+                    color: var(--slds-g-color-brand-base-40) !important;
+                }
+                .resume-contact {
+                    margin-top: 0.3rem;
+                }
+                .resume-contact,
+                .resume-contact li,
+                .resume-contact a {
+                    color: var(--slds-g-color-neutral-base-10) !important;
+                    font-size: 8.5pt;
+                }
+                .resume-cloud {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+                .resume-cloud,
+                .resume-contact .slds-icon,
+                .resume-company .slds-icon,
+                .resume-header .slds-icon_container .slds-icon,
+                .resume-section__head .slds-icon_container .slds-icon {
+                    --slds-c-icon-color-foreground: var(--slds-g-color-brand-base-40);
+                }
+                .resume-header .slds-icon_container,
+                .resume-section__head .slds-icon_container {
+                    background: transparent !important;
+                }
+                .resume-header .slds-page-header__icon,
+                .resume-section__head .slds-icon_small {
+                    width: 0.95rem;
+                    height: 0.95rem;
+                }
+                .resume-body {
+                    padding: 0.28rem 0 0;
+                }
+                .resume-section + .resume-section {
+                    margin-top: 0.32rem;
+                }
+                .resume-section__head {
+                    margin-bottom: 0.16rem;
+                    padding-bottom: 0.08rem;
+                }
+                .resume-section__head h2,
+                .resume-job h3,
+                .resume-cert strong,
+                .resume-kpis strong {
+                    color: var(--slds-g-color-brand-base-20) !important;
+                }
+                .resume-kpis {
+                    margin-top: 0.28rem;
+                }
+                .resume-kpis div {
+                    padding: 0.12rem 0.4rem 0.16rem;
+                }
+                .resume-kpis strong {
+                    font-size: 10.5pt;
+                }
+                .resume-kpis span {
+                    font-size: 7.5pt;
+                }
+                .resume-job {
+                    margin-top: 0.22rem;
+                    padding-left: 0.4rem;
+                }
+                .resume-job li + li {
+                    margin-top: 0;
+                }
+                .resume-skill + .resume-skill {
+                    margin-top: 0.14rem;
+                }
+                .resume-skill h3 {
+                    margin-bottom: 0.1rem;
+                }
+                .resume-pills {
+                    gap: 0.1rem 0.18rem;
+                }
+                .resume-pills .slds-badge,
+                .resume-languages .slds-badge {
+                    padding: 0.02rem 0.32rem;
+                    font-size: 8pt;
+                    line-height: 1.25;
+                    border: 1px solid var(--slds-g-color-border-base-1);
+                    background: #fff !important;
+                    color: var(--slds-g-color-neutral-base-10) !important;
+                }
+                .resume-section,
+                .resume-job,
+                .resume-kpis {
+                    break-inside: avoid;
+                }
             }
         </style>
     </head>
     <body>
-        <h1>Lucas Serafim Magalhães</h1>
-        <div class="role">Salesforce Developer</div>
-        <div class="contact">
-            <span>São Paulo, Brazil (open to remote)</span>
-            <span>lucasserafim.salesforce@gmail.com</span>
-            <span>linkedin.com/in/serafim-lucas-salesforce</span>
-            <span>trailblazer.me/id/lucasserafim</span>
+        <div class="resume-app">
+            <main class="resume slds-card">
+                <header class="slds-page-header resume-header">
+                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                        <div class="slds-media slds-media_center resume-identity">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-user" title="User">
+                                    <svg class="slds-icon slds-page-header__icon" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                        <path d="M800 712v28c0 33-27 60-60 60H260c-33 0-60-27-60-60v-28c0-73 85-117 165-152l8-4c6-3 13-3 19 1a196 196 0 0 0 216 1c6-4 13-4 19-1l8 4c80 34 165 78 165 151" />
+                                        <ellipse cx="500" cy="365" rx="149" ry="165" />
+                                    </svg>
+                                    <span class="slds-assistive-text">User</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span class="slds-page-header__title">Lucas Serafim Magalhães</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <p class="slds-page-header__name-meta resume-role">Salesforce Developer</p>
+                            </div>
+                        </div>
+                        <svg class="slds-icon resume-cloud" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                            <path d="M217 119c17-17 40-28 66-28 34 0 64 19 80 47 14-6 29-10 45-10 62 0 112 50 112 112s-50 112-112 112c-8 0-15-1-22-2a82.4 82.4 0 0 1-72 42c-13 0-25-3-36-8a92.7 92.7 0 0 1-86 56c-40 0-75-25-88-61-6 1-12 2-18 2a87 87 0 0 1-44-162 100.5 100.5 0 0 1 93-140c35 1 64 16 82 40" />
+                        </svg>
+                    </div>
+                    <ul class="resume-contact">
+                        <li>
+                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                <path d="M488 95 344 23c-7-3-15-3-21 0L190 90 56 23c-8-4-18-4-25 1-7 4-11 12-11 20v360c0 9 5 17 13 21l144 72c7 3 15 3 21 0l134-67 133 67c3 2 7 3 11 3s9-1 13-4c7-4 11-12 11-20V116c0-9-4-17-12-21m-38 46v190c0 11-10 19-20 15-37-14-7-76-34-110-25-31-57 1-88-48-29-47 10-81 46-99 5-2 10-2 14 0l74 37c6 3 8 9 8 15M249 419c-6 3-13 2-18-2-10-9-18-23-18-37 0-24-40-16-40-64 0-39-46-49-85-45-10 1-17-6-17-16V109c0-12 12-20 22-14l86 43 2 1 3 2c36 21 29 38 14 64-17 29-24 0-48-8s-48 8-40 24 32 0 48 16 16 40 64 24 56-8 72 8a50 50 0 0 1 0 72c-14 14-20 44-26 64-1 4-4 8-8 10z" />
+                            </svg>
+                            <span>São Paulo, Brazil (open to remote)</span>
+                        </li>
+                        <li>
+                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                <path d="M249 301c6 6 15 6 21 0L496 91c4-8 3-21-13-21L36 71c-12 0-22 11-13 21zm251-128c0-10-12-16-20-9L303 327c-12 11-27 17-43 17s-31-6-43-16L41 164c-8-7-20-2-20 9-1-3-1 227-1 227a40 40 0 0 0 40 40h400a40 40 0 0 0 40-40z" />
+                            </svg>
+                            <a href="mailto:lucasserafim.salesforce@gmail.com">lucasserafim.salesforce@gmail.com</a>
+                        </li>
+                        <li>
+                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                <path d="m272 417-21-3-21-6c-4-1-9 0-12 3l-5 5a79 79 0 0 1-106 6 77 77 0 0 1-4-112l76-76c10-10 22-16 34-20a79 79 0 0 1 74 20l10 13c4 7 13 8 18 2l28-28c4-4 4-10 1-15l-14-16a128 128 0 0 0-71-37 143 143 0 0 0-124 37l-73 73a139 139 0 0 0-6 193 137 137 0 0 0 198 4l25-25c7-5 2-17-7-18M456 58a139 139 0 0 0-193 6l-23 22c-7 7-2 19 7 20 14 1 28 4 42 8 4 1 9 0 12-3l5-5a79 79 0 0 1 106-6 77 77 0 0 1 4 112l-76 76a85 85 0 0 1-34 20 79 79 0 0 1-74-20l-10-13c-4-7-13-8-18-2l-28 28c-4 4-4 10-1 15l14 16a130 130 0 0 0 70 37 143 143 0 0 0 124-37l76-76a137 137 0 0 0-3-198" />
+                            </svg>
+                            <a href="https://linkedin.com/in/serafim-lucas-salesforce">linkedin.com/in/serafim-lucas-salesforce</a>
+                        </li>
+                        <li>
+                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                <path d="m123 370-26 30h51zm24 61h51l-26-29zm205-21 25-29 26 29zM268 22c-4-2-9-2-14 0A380 380 0 0 0 22 380v34c0 5 2 10 7 14a430 430 0 0 0 233 72h9c79-3 157-27 223-72 4-3 7-8 7-14v-34A380 380 0 0 0 268 22M139 148c58-69 123-92 123-92 14 6 169 67 202 264h-41l-78-113c-5-7-16-9-24-4l-4 4-20 28-55-79c-5-7-16-9-24-4l-4 4-112 163-41 1c12-75 43-130 78-172m242 172H280l26-38 24-36zM237 209l40 57-38 53h-96l41-61 43-64zm38 231-15 26a400 400 0 0 1-204-60v-25l1-26h176a44 44 0 0 0 15 62l5 3 16 7c6 2 8 8 6 13m193-35a430 430 0 0 1-81 39l-7 2a700 700 0 0 1-49 13l-28 4 3-5c13-22 5-49-17-62l-4-2-16-7a10 10 0 0 1-5-14l1-2 15-17h187l1 26z" />
+                            </svg>
+                            <a href="https://trailblazer.me/id/lucasserafim">trailblazer.me/id/lucasserafim</a>
+                        </li>
+                    </ul>
+                </header>
+
+                <div class="resume-body">
+                    <section class="resume-section">
+                        <header class="slds-media slds-media_center resume-section__head">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-note" title="Note">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                        <path d="m713 670-11 11a66 66 0 0 1-46 19h-33c-30 0-63-23-63-65v-31c0-25 11-40 18-48l135-136c4-4 7-12 7-17V300c0-33-27-60-60-60H340c-33 0-60 30-60 60h-20c-22 0-40 18-40 40s18 40 40 40h20v80h-20c-22 0-40 18-40 40s18 40 40 40h20v80h-20c-22 0-40 18-40 40s18 40 40 40h20c0 40 27 60 60 60h320c33 0 60-27 60-60v-27c0-6-3-7-7-3M610 390c0 11-9 20-20 20H390c-11 0-20-9-20-20v-20c0-11 9-20 20-20h200c11 0 20 9 20 20zm-90 240c0 11-9 20-20 20H390c-11 0-20-9-20-20v-20c0-11 9-20 20-20h110c11 0 20 9 20 20zm30-120c0 11-9 20-20 20H390c-11 0-20-9-20-20v-20c0-11 9-20 20-20h140c11 0 20 9 20 20zm264-54-12-12c-8-8-20-8-28 0L621 599l-1 3v33c0 3 0 5 3 5h33l4-1 154-154c8-9 8-21 0-29" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Summary</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2>Summary</h2>
+                            </div>
+                        </header>
+                        <p>
+                            Salesforce Developer with 4+ years building Sales Cloud and Service
+                            Cloud solutions in Apex, Lightning Web Components, and Flow, leading
+                            the Salesforce developer team at Grupo Elfa. Owns the CRM side of
+                            integrations: LWC UIs, Apex services, and REST/SOAP connections to
+                            data other teams produce. Cut quotation turnaround for sales reps
+                            from 40 minutes to 3 minutes on a platform later featured as an AWS
+                            success story.
+                        </p>
+                        <div class="resume-kpis">
+                            <div>
+                                <strong>92%</strong>
+                                <span>faster quotations</span>
+                            </div>
+                            <div>
+                                <strong>3 min</strong>
+                                <span>average response</span>
+                            </div>
+                            <div>
+                                <strong>R$365M</strong>
+                                <span>quoted in 15 months</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="resume-section">
+                        <header class="slds-media slds-media_center resume-section__head">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-employee" title="Employee">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                        <path d="M721 467c-30-138-177-239-206-259l-4-2a33 33 0 0 0-24 0l-2 1c-29 19-175 120-206 258a222 222 0 0 0 44 191 245 245 0 0 0 147 90l-15 26a25 25 0 0 0 0 17 17 17 0 0 0 15 9h61a20 20 0 0 0 15-9 25 25 0 0 0 0-17l-15-26a240 240 0 0 0 147-90 223 223 0 0 0 43-189m-83 157-17 19a130 130 0 0 0-120-80h-4a123 123 0 0 0-117 80l-17-19a174 174 0 0 1-35-147c24-106 133-192 172-218 39 27 148 113 172 219a166 166 0 0 1-34 146" />
+                                        <circle cx="500" cy="463" r="84" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Experience</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2>Experience</h2>
+                            </div>
+                        </header>
+
+                        <article class="resume-job">
+                            <div class="resume-job__head">
+                                <h3>Salesforce Software Engineer</h3>
+                                <p class="resume-when">04/2024 to Present</p>
+                            </div>
+                            <p class="resume-company">
+                                <svg class="slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                    <path d="M210 40H70a30 30 0 0 0-30 30v400c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V70a30 30 0 0 0-30-30m-90 315c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 200c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm250-15H310a30 30 0 0 0-30 30v300c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V170a30 30 0 0 0-30-30m-90 215c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5z" />
+                                </svg>
+                                <span>Grupo Elfa</span>
+                            </p>
+                            <ul class="slds-list_dotted slds-m-left_small">
+                                <li>
+                                    Led the Salesforce developer team as technical lead and
+                                    reference developer, and built the Salesforce side of a
+                                    quotation platform for sales reps: LWC front end and in-org
+                                    REST/SOAP integrations over data from an AWS-based team,
+                                    shipped through Git, Salesforce DX and CI/CD.
+                                </li>
+                                <li>
+                                    Cut average quotation response time from 40 to 3 minutes (a
+                                    92% reduction) and supported R$365M in quotation volume in
+                                    the first 15 months.
+                                </li>
+                                <li>
+                                    Delivered a platform published as an official AWS success
+                                    story and featured in IstoÉ Dinheiro. Built additional Apex
+                                    services and Lightning Web Components used in daily
+                                    operations.
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="resume-job">
+                            <div class="resume-job__head">
+                                <h3>Salesforce Developer</h3>
+                                <p class="resume-when">06/2023 to 04/2024</p>
+                            </div>
+                            <p class="resume-company">
+                                <svg class="slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                    <path d="M210 40H70a30 30 0 0 0-30 30v400c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V70a30 30 0 0 0-30-30m-90 315c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 200c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm250-15H310a30 30 0 0 0-30 30v300c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V170a30 30 0 0 0-30-30m-90 215c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5z" />
+                                </svg>
+                                <span>NTT DATA Europe &amp; Latam</span>
+                            </p>
+                            <ul class="slds-list_dotted slds-m-left_small">
+                                <li>
+                                    Developed and refactored Apex classes, triggers and
+                                    Lightning Web Components for C6 Bank in a team of about 10
+                                    developers.
+                                </li>
+                                <li>
+                                    Implemented REST and SOAP integrations between Salesforce
+                                    and external systems.
+                                </li>
+                                <li>
+                                    Contributed to solution-design discussions on Salesforce
+                                    architecture and integration approach.
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="resume-job">
+                            <div class="resume-job__head">
+                                <h3>Developer IV, Salesforce</h3>
+                                <p class="resume-when">12/2021 to 06/2023</p>
+                            </div>
+                            <p class="resume-company">
+                                <svg class="slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                    <path d="M210 40H70a30 30 0 0 0-30 30v400c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V70a30 30 0 0 0-30-30m-90 315c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5H85c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 200c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm250-15H310a30 30 0 0 0-30 30v300c0 5 5 10 10 10h40c6 0 10-4 10-10v-60c0-6 4-10 10-10h60c6 0 10 4 10 10v60c0 6 4 10 10 10h30a20 20 0 0 0 20-20V170a30 30 0 0 0-30-30m-90 215c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm80 100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5zm0-100c0 3-2 5-5 5h-30c-3 0-5-2-5-5v-50c0-3 2-5 5-5h30c3 0 5 2 5 5z" />
+                                </svg>
+                                <span>Nescara</span>
+                            </p>
+                            <ul class="slds-list_dotted slds-m-left_small">
+                                <li>
+                                    Built features for an Opportunities portal on Salesforce in
+                                    a team of 3 developers, delivered on the agreed timeline.
+                                </li>
+                                <li>
+                                    Improved sales workflows with CRM automation and custom
+                                    configuration.
+                                </li>
+                                <li>
+                                    Promoted from Developer I to Developer IV within 18 months.
+                                </li>
+                            </ul>
+                        </article>
+                    </section>
+
+                    <section class="resume-section">
+                        <header class="slds-media slds-media_center resume-section__head">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-skill" title="Skill">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                        <path d="M438 468a54 54 0 1 1 55-54 54 54 0 0 1-55 54m335 89-72-108v-9a240 240 0 0 0-239-240 220 220 0 0 0-57 7 239 239 0 0 0-182 233 219 219 0 0 0 36 127c42 60 70 108 53 173a46 46 0 0 0 9 42 44 44 0 0 0 36 18h196a47 47 0 0 0 47-38 50 50 0 0 0 2-12 24 24 0 0 1 24-20h14a47 47 0 0 0 47-34 413 413 0 0 0 15-96h51a28 28 0 0 0 22-16 29 29 0 0 0-2-27m-198-84-10 16a22 22 0 0 1-18 9 24 24 0 0 1-7-1l-26-10a116 116 0 0 1-39 22l-5 29a20 20 0 0 1-20 16h-20a20 20 0 0 1-20-16l-5-29a100 100 0 0 1-36-20l-29 10a24 24 0 0 1-7 1 21 21 0 0 1-17-10l-10-16a19 19 0 0 1 4-25l24-19a101 101 0 0 1-3-21 94 94 0 0 1 3-20l-23-20a19 19 0 0 1-5-25l10-17a20 20 0 0 1 18-10 24 24 0 0 1 7 2l28 10a115 115 0 0 1 37-21l4-28a19 19 0 0 1 20-16h20a19 19 0 0 1 20 15l5 28a113 113 0 0 1 37 21l28-10a24 24 0 0 1 7-2 21 21 0 0 1 18 10l10 16a20 20 0 0 1-5 26l-23 19a96 96 0 0 1 2 21 94 94 0 0 1-2 20l23 19a20 20 0 0 1 5 26" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Skills</span>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2>Skills</h2>
+                            </div>
+                        </header>
+                        <div class="resume-skill">
+                            <h3>Salesforce development</h3>
+                            <div class="resume-pills">
+                                <span class="slds-badge slds-badge_lightest">Apex</span>
+                                <span class="slds-badge slds-badge_lightest">Lightning Web Components</span>
+                                <span class="slds-badge slds-badge_lightest">Flow</span>
+                                <span class="slds-badge slds-badge_lightest">SOQL</span>
+                                <span class="slds-badge slds-badge_lightest">SOSL</span>
+                                <span class="slds-badge slds-badge_lightest">Visualforce</span>
+                                <span class="slds-badge slds-badge_lightest">Aura</span>
+                                <span class="slds-badge slds-badge_lightest">Custom objects</span>
+                                <span class="slds-badge slds-badge_lightest">Reports</span>
+                            </div>
+                        </div>
+                        <div class="resume-skill">
+                            <h3>Integration and delivery</h3>
+                            <div class="resume-pills">
+                                <span class="slds-badge slds-badge_lightest">REST APIs</span>
+                                <span class="slds-badge slds-badge_lightest">SOAP APIs</span>
+                                <span class="slds-badge slds-badge_lightest">CI/CD</span>
+                                <span class="slds-badge slds-badge_lightest">Salesforce DX</span>
+                                <span class="slds-badge slds-badge_lightest">Git</span>
+                                <span class="slds-badge slds-badge_lightest">JavaScript</span>
+                                <span class="slds-badge slds-badge_lightest">HTML</span>
+                            </div>
+                        </div>
+                        <div class="resume-skill">
+                            <h3>Salesforce clouds</h3>
+                            <div class="resume-pills">
+                                <span class="slds-badge slds-badge_lightest">Sales Cloud</span>
+                                <span class="slds-badge slds-badge_lightest">Service Cloud</span>
+                                <span class="slds-badge slds-badge_lightest">Omnichannel</span>
+                                <span class="slds-badge slds-badge_lightest">CPQ</span>
+                                <span class="slds-badge slds-badge_lightest">Velocity</span>
+                                <span class="slds-badge slds-badge_lightest">Marketing Cloud</span>
+                            </div>
+                        </div>
+                        <div class="resume-skill">
+                            <h3>Practices</h3>
+                            <div class="resume-pills">
+                                <span class="slds-badge slds-badge_lightest">Technical leadership</span>
+                                <span class="slds-badge slds-badge_lightest">Solution design</span>
+                                <span class="slds-badge slds-badge_lightest">CRM automation</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="resume-split slds-m-top_small">
+                        <section class="resume-section">
+                            <header class="slds-media slds-media_center resume-section__head">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-standard-reward" title="Reward">
+                                        <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                            <path d="M467 634 350 800l-30-80h-80l102-139c20 12 41 14 56 17l14 2 10 8c12 8 27 20 45 26m191-53c-20 12-41 14-56 17l-15 2-10 8c-11 8-25 20-44 26l117 166 30-80h80zM500 320c-39 0-70 31-70 70s31 70 70 70 70-31 70-70-31-70-70-70m190 70c0 24-26 43-35 64-9 22-4 54-21 70-16 16-48 12-70 21-21 9-40 35-64 35s-43-26-64-35c-22-9-54-4-70-21-16-16-12-48-21-70-9-21-35-40-35-64s26-43 35-64c9-22 4-54 21-70 16-16 48-12 70-21 21-9 40-35 64-35s43 26 64 35c22 9 54 4 70 21 16 16 12 48 21 70 9 21 35 40 35 64m-60 0a130 130 0 1 0-260 0 130 130 0 1 0 260 0" />
+                                        </svg>
+                                        <span class="slds-assistive-text">Certifications</span>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2>Certifications</h2>
+                                </div>
+                            </header>
+                            <p class="resume-cert">
+                                <strong>Salesforce Certified Platform Developer I</strong>
+                                <span>04/2022</span>
+                            </p>
+                            <p class="resume-cert">
+                                <strong>Salesforce Certified JavaScript Developer I</strong>
+                                <span>04/2023</span>
+                            </p>
+                        </section>
+
+                        <div>
+                            <section class="resume-section">
+                                <header class="slds-media slds-media_center resume-section__head">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-standard-education" title="Education">
+                                            <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 1000 1000">
+                                                <path d="M499 511c-15 1-29-5-44-10l-236-79-13-7c-5-4-5-9 0-13 4-3 9-6 14-7l252-76c19-6 38-6 58 0l250 75 15 7c6 4 6 10 0 14l-12 6-251 83c-11 5-21 7-33 7m-166 4c-12-3-15 5-15 11v95c0 11 4 18 11 25l9 7c20 14 43 23 67 29a363 363 0 0 0 234-16c13-6 25-13 34-23 6-6 9-12 8-21l1-92c0-17-12-15-17-14l-133 44c-22 7-43 7-65 0zm416-29c-4 1-5 3-5 7v84l-2 9-18 45c-5 14-2 28 8 39l11 10c4 3 10 5 15 6 9 1 16-4 22-9l9-9c7-9 9-22 6-34-4-17-11-32-19-47-2-3-3-7-3-10v-92c0-6-5-5-7-4z" />
+                                            </svg>
+                                            <span class="slds-assistive-text">Education</span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2>Education</h2>
+                                    </div>
+                                </header>
+                                <p>
+                                    Bachelor's degree in Economics, UNESP. Coursework in Python, Java,
+                                    and JavaScript.
+                                </p>
+                            </section>
+
+                            <section class="resume-section">
+                                <header class="slds-media slds-media_center resume-section__head">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container" title="World" style="background-color: var(--slds-g-color-palette-indigo-50)">
+                                            <svg class="slds-icon slds-icon_small" aria-hidden="true" focusable="false" viewBox="0 0 520 520">
+                                                <path d="M260 20a240 240 0 1 0 0 480 240 240 0 1 0 0-480m20 51h-2zm-20 379A190 190 0 0 1 70 260c0-10 1-21 3-30 13 2 29 7 37 15 17 18 36 39 54 43l-4 4c-2 3-4 9-4 19 0 47 44 19 44 66s53 66 53 28 35-56 35-85-27-28-44-38c-18-9-27-24-61-19-18-17-28-31-20-47 9-17 46-20 46-46s-25-31-43-31c-8 0-25-6-39-13 17-17 38-31 60-41 16 7 43 18 66 18 27 0 41-19 37-31 45 7 85 30 114 62-15 9-35 19-70 19-46 0-46 47-19 56 28 9 56-18 65 0s-65 18-46 64 37-1 56 45 56-7 28-43c-12-16-9-65 19-65h9c4 16 7 33 7 50-3 105-88 190-193 190" />
+                                            </svg>
+                                            <span class="slds-assistive-text">Languages</span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2>Languages</h2>
+                                    </div>
+                                </header>
+                                <div class="resume-languages">
+                                    <span class="slds-badge slds-badge_lightest">Portuguese · native</span>
+                                    <span class="slds-badge slds-badge_lightest">English · full professional</span>
+                                    <span class="slds-badge slds-badge_lightest">Spanish · professional working</span>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-
-        <h2>Summary</h2>
-        <p>
-            Salesforce Developer with 4+ years building Sales Cloud and Service
-            Cloud solutions in Apex, Lightning Web Components, and Flow, leading
-            the Salesforce developer team at Grupo Elfa. Owns the CRM side of
-            integrations: LWC UIs, Apex services, and REST/SOAP connections to
-            data other teams produce. Cut quotation turnaround for sales reps
-            from 40 minutes to 3 minutes on a platform later featured as an AWS
-            success story.
-        </p>
-
-        <h2>Experience</h2>
-
-        <div class="job">
-            <div class="job-head">
-                <span>Salesforce Software Engineer</span
-                ><span>04/2024 to Present</span>
-            </div>
-            <div class="job-sub"><span>Grupo Elfa</span></div>
-            <ul>
-                <li>
-                    Led the Salesforce developer team as technical lead and
-                    reference developer, and built the Salesforce side of a
-                    quotation platform for sales reps: LWC front end and in-org
-                    REST/SOAP integrations over data from an AWS-based team,
-                    shipped through Git, Salesforce DX and CI/CD.
-                </li>
-                <li>
-                    Cut average quotation response time from 40 to 3 minutes (a
-                    92% reduction) and supported R$365M in quotation volume in
-                    the first 15 months.
-                </li>
-                <li>
-                    Delivered a platform published as an official AWS success
-                    story and featured in IstoÉ Dinheiro. Built additional Apex
-                    services and Lightning Web Components used in daily
-                    operations.
-                </li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-head">
-                <span>Salesforce Developer</span><span>06/2023 to 04/2024</span>
-            </div>
-            <div class="job-sub"><span>NTT DATA Europe &amp; Latam</span></div>
-            <ul>
-                <li>
-                    Developed and refactored Apex classes, triggers and
-                    Lightning Web Components for C6 Bank in a team of about 10
-                    developers.
-                </li>
-                <li>
-                    Implemented REST and SOAP integrations between Salesforce
-                    and external systems.
-                </li>
-                <li>
-                    Contributed to solution-design discussions on Salesforce
-                    architecture and integration approach.
-                </li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-head">
-                <span>Developer IV, Salesforce</span
-                ><span>12/2021 to 06/2023</span>
-            </div>
-            <div class="job-sub"><span>Nescara</span></div>
-            <ul>
-                <li>
-                    Built features for an Opportunities portal on Salesforce in
-                    a team of 3 developers, delivered on the agreed timeline.
-                </li>
-                <li>
-                    Improved sales workflows with CRM automation and custom
-                    configuration.
-                </li>
-                <li>
-                    Promoted from Developer I to Developer IV within 18 months.
-                </li>
-            </ul>
-        </div>
-
-        <h2>Skills</h2>
-        <div class="skills">
-            <p>
-                <b>Salesforce development:</b> Apex, Lightning Web Components
-                (LWC), Flow, SOQL, SOSL, Visualforce, Aura, custom objects,
-                reports
-            </p>
-            <p>
-                <b>Integration and delivery:</b> REST APIs, SOAP APIs, CI/CD,
-                Salesforce DX, Git, JavaScript, HTML
-            </p>
-            <p>
-                <b>Salesforce clouds:</b> Sales Cloud, Service Cloud,
-                Omnichannel, CPQ, Velocity, Marketing Cloud
-            </p>
-            <p>
-                <b>Practices:</b> Technical leadership, solution design, CRM
-                automation
-            </p>
-        </div>
-
-        <h2>Certifications</h2>
-        <p>Salesforce Certified Platform Developer I, Salesforce (04/2022)</p>
-        <p>Salesforce Certified JavaScript Developer I, Salesforce (04/2023)</p>
-
-        <h2>Education</h2>
-        <p>
-            Bachelor's degree in Economics, UNESP. Coursework in Python, Java,
-            and JavaScript.
-        </p>
-
-        <h2>Languages</h2>
-        <p>
-            Portuguese (native), English (full professional),
-            Spanish (professional working)
-        </p>
     </body>
 </html>
