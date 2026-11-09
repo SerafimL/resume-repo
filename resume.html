@@ -1,104 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Lucas Serafim Magalhães - Salesforce Developer</title>
-<style>
-  @page { size: A4; margin: 14mm 15mm; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 10pt;
-    line-height: 1.32;
-    color: #111;
-    margin: 0;
-  }
-  h1 { font-size: 20pt; margin: 0 0 1px 0; letter-spacing: 0.2px; }
-  .role { font-size: 11.5pt; font-weight: bold; color: #1a4f8b; margin: 0 0 3px 0; }
-  .contact { font-size: 9.5pt; margin: 0 0 8px 0; }
-  .contact span + span::before { content: " | "; color: #888; }
-  h2 {
-    font-size: 10.5pt;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    border-bottom: 1px solid #1a4f8b;
-    color: #1a4f8b;
-    padding-bottom: 1px;
-    margin: 10px 0 5px 0;
-  }
-  p { margin: 0 0 3px 0; }
-  .job { margin-bottom: 7px; }
-  .job-head { display: flex; justify-content: space-between; font-weight: bold; }
-  .job-sub { display: flex; justify-content: space-between; font-style: italic; color: #333; margin-bottom: 2px; }
-  ul { margin: 2px 0 0 0; padding-left: 16px; }
-  li { margin-bottom: 2px; }
-  .skills p { margin-bottom: 2px; }
-  .skills b { font-weight: bold; }
-</style>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Lucas Serafim Magalhães - Salesforce Developer</title>
+        <style>
+            @page {
+                size: A4;
+                margin: 14mm 15mm;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+                line-height: 1.32;
+                color: #111;
+                margin: 0;
+            }
+            h1 {
+                font-size: 20pt;
+                margin: 0 0 1px 0;
+                letter-spacing: 0.2px;
+            }
+            .role {
+                font-size: 11.5pt;
+                font-weight: bold;
+                color: #1a4f8b;
+                margin: 0 0 3px 0;
+            }
+            .contact {
+                font-size: 9.5pt;
+                margin: 0 0 8px 0;
+            }
+            .contact span + span::before {
+                content: " | ";
+                color: #888;
+            }
+            h2 {
+                font-size: 10.5pt;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                border-bottom: 1px solid #1a4f8b;
+                color: #1a4f8b;
+                padding-bottom: 1px;
+                margin: 10px 0 5px 0;
+            }
+            p {
+                margin: 0 0 3px 0;
+            }
+            .job {
+                margin-bottom: 7px;
+            }
+            .job-head {
+                display: flex;
+                justify-content: space-between;
+                font-weight: bold;
+            }
+            .job-sub {
+                display: flex;
+                justify-content: space-between;
+                font-style: italic;
+                color: #333;
+                margin-bottom: 2px;
+            }
+            ul {
+                margin: 2px 0 0 0;
+                padding-left: 16px;
+            }
+            li {
+                margin-bottom: 2px;
+            }
+            .skills p {
+                margin-bottom: 2px;
+            }
+            .skills b {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Lucas Serafim Magalhães</h1>
+        <div class="role">Salesforce Developer</div>
+        <div class="contact">
+            <span>São Paulo, Brazil (open to remote)</span>
+            <span>lucasserafim.salesforce@gmail.com</span>
+            <span>linkedin.com/in/serafim-lucas-salesforce</span>
+            <span>trailblazer.me/id/lucasserafim</span>
+        </div>
 
-<h1>Lucas Serafim Magalhães</h1>
-<div class="role">Salesforce Developer</div>
-<div class="contact">
-  <span>São Paulo, Brazil (open to remote)</span>
-  <span>lucasserafim.salesforce@gmail.com</span>
-  <span>linkedin.com/in/serafim-lucas-salesforce</span>
-  <span>trailblazer.me/id/lucasserafim</span>
-</div>
+        <h2>Summary</h2>
+        <p>
+            Salesforce Developer with 4+ years building Sales Cloud and Service
+            Cloud solutions in Apex, Lightning Web Components, and Flow, leading
+            the Salesforce developer team at Grupo Elfa. Owns the CRM side of
+            integrations: LWC UIs, Apex services, and REST/SOAP connections to
+            data other teams produce. Cut quotation turnaround for sales reps
+            from 40 minutes to 3 minutes on a platform later featured as an AWS
+            success story.
+        </p>
 
-<h2>Summary</h2>
-<p>Salesforce Developer with 4+ years building Sales Cloud and Service Cloud solutions in Apex, Lightning Web Components, and Flow, leading the Salesforce developer team at Grupo Elfa. Owns the CRM side of integrations: LWC UIs, Apex services, and REST/SOAP connections to data other teams produce. Cut quotation turnaround for sales reps from 40 minutes to 3 minutes on a platform later featured as an AWS success story.</p>
+        <h2>Experience</h2>
 
-<h2>Experience</h2>
+        <div class="job">
+            <div class="job-head">
+                <span>Salesforce Software Engineer</span
+                ><span>04/2024 to Present</span>
+            </div>
+            <div class="job-sub"><span>Grupo Elfa</span></div>
+            <ul>
+                <li>
+                    Led the Salesforce developer team as technical lead and
+                    reference developer, and built the Salesforce side of a
+                    quotation platform for sales reps: LWC front end and in-org
+                    REST/SOAP integrations over data from an AWS-based team,
+                    shipped through Git, Salesforce DX and CI/CD.
+                </li>
+                <li>
+                    Cut average quotation response time from 40 to 3 minutes (a
+                    92% reduction) and supported R$365M in quotation volume in
+                    the first 15 months.
+                </li>
+                <li>
+                    Delivered a platform published as an official AWS success
+                    story and featured in IstoÉ Dinheiro. Built additional Apex
+                    services and Lightning Web Components used in daily
+                    operations.
+                </li>
+            </ul>
+        </div>
 
-<div class="job">
-  <div class="job-head"><span>Salesforce Software Engineer</span><span>04/2024 to Present</span></div>
-  <div class="job-sub"><span>Grupo Elfa</span></div>
-  <ul>
-    <li>Led the Salesforce developer team as technical lead and reference developer, and built the Salesforce side of a quotation platform for sales reps: LWC front end and in-org REST/SOAP integrations over data from an AWS-based team, shipped through Git, Salesforce DX and CI/CD.</li>
-    <li>Cut average quotation response time from 40 to 3 minutes (a 92% reduction) and supported R$365M in quotation volume in the first 15 months.</li>
-    <li>Delivered a platform published as an official AWS success story and featured in IstoÉ Dinheiro. Built additional Apex services and Lightning Web Components used in daily operations.</li>
-  </ul>
-</div>
+        <div class="job">
+            <div class="job-head">
+                <span>Salesforce Developer</span><span>06/2023 to 04/2024</span>
+            </div>
+            <div class="job-sub"><span>NTT DATA Europe &amp; Latam</span></div>
+            <ul>
+                <li>
+                    Developed and refactored Apex classes, triggers and
+                    Lightning Web Components for C6 Bank in a team of about 10
+                    developers.
+                </li>
+                <li>
+                    Implemented REST and SOAP integrations between Salesforce
+                    and external systems.
+                </li>
+                <li>
+                    Contributed to solution-design discussions on Salesforce
+                    architecture and integration approach.
+                </li>
+            </ul>
+        </div>
 
-<div class="job">
-  <div class="job-head"><span>Salesforce Developer</span><span>06/2023 to 04/2024</span></div>
-  <div class="job-sub"><span>NTT DATA Europe &amp; Latam</span></div>
-  <ul>
-    <li>Developed and refactored Apex classes, triggers and Lightning Web Components for C6 Bank in a team of about 10 developers.</li>
-    <li>Implemented REST and SOAP integrations between Salesforce and external systems.</li>
-    <li>Contributed to solution-design discussions on Salesforce architecture and integration approach.</li>
-  </ul>
-</div>
+        <div class="job">
+            <div class="job-head">
+                <span>Developer IV, Salesforce</span
+                ><span>12/2021 to 06/2023</span>
+            </div>
+            <div class="job-sub"><span>Nescara</span></div>
+            <ul>
+                <li>
+                    Built features for an Opportunities portal on Salesforce in
+                    a team of 3 developers, delivered on the agreed timeline.
+                </li>
+                <li>
+                    Improved sales workflows with CRM automation and custom
+                    configuration.
+                </li>
+                <li>
+                    Promoted from Developer I to Developer IV within 18 months.
+                </li>
+            </ul>
+        </div>
 
-<div class="job">
-  <div class="job-head"><span>Developer IV, Salesforce</span><span>12/2021 to 06/2023</span></div>
-  <div class="job-sub"><span>Nescara</span></div>
-  <ul>
-    <li>Built features for an Opportunities portal on Salesforce in a team of 3 developers, delivered on the agreed timeline.</li>
-    <li>Improved sales workflows with CRM automation and custom configuration.</li>
-    <li>Promoted from Developer I to Developer IV within 18 months.</li>
-  </ul>
-</div>
+        <h2>Skills</h2>
+        <div class="skills">
+            <p>
+                <b>Salesforce development:</b> Apex, Lightning Web Components
+                (LWC), Flow, SOQL, SOSL, Visualforce, Aura, custom objects,
+                reports
+            </p>
+            <p>
+                <b>Integration and delivery:</b> REST APIs, SOAP APIs, CI/CD,
+                Salesforce DX, Git, JavaScript, HTML
+            </p>
+            <p>
+                <b>Salesforce clouds:</b> Sales Cloud, Service Cloud,
+                Omnichannel, CPQ, Velocity, Marketing Cloud
+            </p>
+            <p>
+                <b>Practices:</b> Technical leadership, solution design, CRM
+                automation
+            </p>
+        </div>
 
-<h2>Skills</h2>
-<div class="skills">
-  <p><b>Salesforce development:</b> Apex, Lightning Web Components (LWC), Flow, SOQL, SOSL, Visualforce, Aura, custom objects, reports</p>
-  <p><b>Integration and delivery:</b> REST APIs, SOAP APIs, CI/CD, Salesforce DX, Git, JavaScript, HTML</p>
-  <p><b>Salesforce clouds:</b> Sales Cloud, Service Cloud, Omnichannel, CPQ, Velocity, Marketing Cloud</p>
-  <p><b>Practices:</b> Technical leadership, solution design, CRM automation</p>
-</div>
+        <h2>Certifications</h2>
+        <p>Salesforce Certified Platform Developer I, Salesforce (04/2022)</p>
+        <p>Salesforce Certified JavaScript Developer I, Salesforce (04/2023)</p>
 
-<h2>Certifications</h2>
-<p>Salesforce Certified Platform Developer I, Salesforce (04/2022)</p>
-<p>Salesforce Certified JavaScript Developer I, Salesforce (04/2023)</p>
+        <h2>Education</h2>
+        <p>
+            Bachelor's degree in Economics, UNESP. Coursework in Python, Java,
+            and JavaScript.
+        </p>
 
-<h2>Education</h2>
-<p>Bachelor's degree in Economics, UNESP. Coursework in Python, Java, and JavaScript.</p>
-
-<h2>Languages</h2>
-<p>Portuguese (native or bilingual), English (full professional), Spanish (professional working)</p>
-
-</body>
+        <h2>Languages</h2>
+        <p>
+            Portuguese (native), English (full professional),
+            Spanish (professional working)
+        </p>
+    </body>
 </html>

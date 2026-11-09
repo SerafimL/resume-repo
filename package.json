@@ -1,0 +1,11 @@
+{
+  "name": "resume-repo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lucas Serafim Magalhães — Salesforce Developer resume",
+  "author": "Lucas Serafim Magalhães",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@salesforce-ux/design-system": "^2.264.3"
+  }
+}
